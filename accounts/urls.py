@@ -4,4 +4,6 @@ urlpatterns = [
 
     path('',home,name='home'),
     path('login/',log_in,name='login'),
+    path('logout/',out,name='logout'),
+    path('dash/',create,name='create'),
 ]

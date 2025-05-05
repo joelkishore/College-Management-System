@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout
-
+from .forms import *
 # Create your views here.
 
 def home(request):
@@ -15,14 +15,27 @@ def log_in(request):
             role=user.role
             login(request,user)
             if role=='admin':
-                pass
+                return redirect('dash')
             elif role=='teacher':
-                pass
+                return redirect('staff')
             elif role=='student':
-                pass
+                return redirect('student')
             else:
                 return redirect('home')
-
     else:
         form=AuthenticationForm()
     return render(request,'login.html',{'form':form})
+
+def out(request):
+    logout(request)
+    return redirect('home')
+
+def create(request):
+    if request.method=='POST':
+        form=CreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form=CreationForm()
+    return render(request,'admin/admin_dash.html',{'form':form})
