@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h4>welcome  {{user}}</h4>
+<a href="{% url 'login' %}" class="btn-btn-primary">Login</a>
+{% endif %}
+<a href="{% url 'login' %}" class="btn-btn-primary">Login</a>
+{% endblock %}
