@@ -2,6 +2,23 @@
 
 {% block content %}
 
+{% for i in news %}
+<p>{{i}} for {{i.class_name}} <a href="{% url 'delete_announcements' i.pk%}" class="btn btn-danger">deleteannouncements</a> </p>
+
+{% endfor %}
+
 <h2>this is staff dashboard</h2>
+
+{% for i in class %}
+<p>{{i}}</p>
+<p>{{i.subject}}</p>
+{% for student in i.students.all %}
+<p>{{student.username}}</p>
+
+{% endfor %}
+
+{% endfor %}
+<a href="{% url 'announcements' %}" class="btn btn-primary" >Create Announcement</a>
+<a href="{% url 'add_document' %}" class="btn btn-primary" >Add Document</a>
 
 {% endblock %}

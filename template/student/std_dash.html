@@ -4,4 +4,19 @@
 
 <h2>this is student dashboard</h2>
 
+{% for i in class_name %}
+<p>{{i}}</p>
+<p>{{i.teacher}} for {{i.subject}}</p>
+{% endfor %}
+
+<!-- {% for i in document %}
+<a href="{{i.doc.url}}" download="{{i}}">{{i}}</a>
+{% endfor %} -->
+
+{% for doc in document %}
+  <a href="{{ doc.doc.url }}" download="{{ doc }}">{{ doc }}</a><br>
+{% endfor %}
+
+
+
 {% endblock %}

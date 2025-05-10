@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Assign</button>
+</form>
+<br><br>
+{% for i in subject %}
+<p>{{i.teacher}}-{{i.subject_name}}</p>
+{% endfor %}
+{% endblock %}

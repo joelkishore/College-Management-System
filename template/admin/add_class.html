@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">create</button>
+</form><br><br>
+<table border="1">
+    <thead>
+      <tr>
+        <th>S.no</th>
+        <th>Class</th>
+        <th>Teacher</th>
+        <th>Subject</th>
+        <th>Students</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in class %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i }}</td>
+        <td>{{ i.teacher }}</td>
+        <td>{{ i.subject }}</td>
+        <td>
+            {% for student in i.students.all %}
+            {{ student.username }},
+            {% endfor %}
+        </td>
+        <td><a href="{% url 'delete_class' i.pk %}"class='btn btn-danger'> Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}
