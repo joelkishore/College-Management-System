@@ -13,5 +13,6 @@ urlpatterns = [
     path('update_user/<int:user_id>/',update_user,name='update_users_with_id'),
     path('add_class/',class_create,name='add_class'),
     path('delete_class/<int:pk>/',delete_class,name='delete_class'),
+    path('viewschedule/',viewschedule,name='viewschedule'),
     # path('add_subject/',assign,name='assign'),
 ]

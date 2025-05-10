@@ -14,11 +14,10 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-# class Subject(models.Model):
-#     subject_name = models.CharField(max_length=100)
-#     teacher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, limit_choices_to={'role': 'teacher'})
-#     def __str__(self):
-#         return self.subject_name
+class Subject(models.Model):
+    subject_name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.subject_name
     
 
 class Class(models.Model):
@@ -29,7 +28,7 @@ class Class(models.Model):
         related_name='classes',
         limit_choices_to={'role': 'student'}
     )
-    subject= models.CharField(max_length=100,null=True)
+    subject= models.ForeignKey(Subject,on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
         return self.name

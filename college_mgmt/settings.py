@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'student',
     'teacher',
+    'schedule',
+    'django_extensions',
     
 ]
 
@@ -129,3 +131,8 @@ AUTH_USER_MODEL='accounts.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

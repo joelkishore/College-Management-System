@@ -2,12 +2,11 @@
 
 {% block content %}
 
-<h2>this is student dashboard</h2>
-
-{% for i in name %}
-<p>{{i}}</p>
-<p>{{i.teacher}} for {{i.subject}}</p>
-{% endfor %}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
 
 <table border="1">
     <thead>
@@ -35,11 +34,6 @@
         {% endfor %}
     </tbody>
 </table>
-
-{% for doc in document %}
-  <a href="{{ doc.doc.url }}" download="{{ doc }}">{{ doc }}</a><br>
-{% endfor %}
-
 
 
 {% endblock %}

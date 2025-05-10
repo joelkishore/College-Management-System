@@ -4,6 +4,9 @@ from django.contrib.auth import login,logout
 from .forms import *
 from django.contrib.auth import get_user_model
 from django.http import Http404
+from schedule.models import createschedule
+from schedule.form import scheduleform
+
 # Create your views here.
 
 def home(request):
@@ -116,13 +119,13 @@ def delete_class(request,pk):
     data.delete()
     return redirect('add_class')
 
-# def assign(request):
-#     data=Subject.objects.all()
-#     if request.method=='POST':
-#         form=Subjectform(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('dash')
-#     else:
-#         form=Subjectform()
-#     return render(request,'admin/add_subject.html',{'form':form,'subject':data})
+def viewschedule(request):
+    if request.method=='POST':
+        form=scheduleform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('viewschedule')
+    else:
+        form=scheduleform()
+    schedule=createschedule.objects.all()
+    return render(request,'schedule/schedule.html',{'schedule':schedule,'form':form})
