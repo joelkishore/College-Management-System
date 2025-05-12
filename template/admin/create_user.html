@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<fieldset class="border-primary">
-    <legend>Create User</legend>  
-    <form method="POST">
+
+<div class="container p-5" style="margin-top: 3rem; max-width: 450px;">
+<div class="border p-4 rounded shadow-lg">
+    <H5>CREATE USER :</H5>
+    <form method="POST" >
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
-</fieldset>
+</div>
+</div>
 
 {% endblock %}

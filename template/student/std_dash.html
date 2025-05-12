@@ -2,15 +2,26 @@
 
 {% block content %}
 
-<h2>this is student dashboard</h2>
+<h2 class="text-center"v >Welcome {{user}} </h2>
 
-{% for i in name %}
-<p>{{i}}</p>
-<p>{{i.teacher}} for {{i.subject}}</p>
-{% endfor %}
-
-<table border="1">
-    <thead>
+<div class="container p-3" style="margin-top: 3rem; max-width: 850px;">
+<div class="border p-4 rounded shadow-lg">
+    <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Announcements :</th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for i in news %}  
+            <tr>
+                <td>{{i}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
         <tr>
             <th>Class</th>
             <th>Day</th>
@@ -36,10 +47,37 @@
     </tbody>
 </table>
 
-{% for doc in document %}
-  <a href="{{ doc.doc.url }}" download="{{ doc }}">{{ doc }}</a><br>
-{% endfor %}
-
-
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Subject </th>
+            <th>Staff</th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for i in class_name %}  
+            <tr >
+                <td>{{i.subject}}</td>
+                <td>{{i.teacher}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Documents :</th>
+            <th>Action </th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for doc in document %}  
+            <tr >
+                <td>{{doc}}</td>
+                <td class="text-center"><a href="{{ doc.doc.url }}" download="{{ doc }}" class="btn btn-primary">Download</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

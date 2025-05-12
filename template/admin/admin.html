@@ -1,80 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="d-flex" style="min-height: 100vh;">
+  <!-- Sidebar -->
+  <div class="sidebar" style="height: 100vh;">
+    <img src="{{ user.profile }}" alt="Profile" class="d-block mx-auto" style="height: 90px; width: 90px; border-radius: 90%; ">
+    <a href="{% url 'create' %}" class="btn" style="padding: 1rem;" >Add User</a>
+    <a href="{% url 'delete' %}" class="btn" style="padding: 1rem;">Delete User</a>
+    <a href="{% url 'update_users' %}" class="btn" style="padding: 1rem;">Update User</a>
+    <a href="{% url 'add_class' %}" class="btn" style="padding: 1rem;">Add Class</a>
+    <a href="{% url 'viewschedule' %}" class="btn" style="padding: 1rem;">View Schedule</a>
+    <a href="{% url 'logout' %}" class="btn btn-light text-dark" >Logout</a>
+  </div> 
 
-
-<div class="container mt-4">
-    <h3>Users</h3>
-    <!-- <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Username</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for data in datas %}
-                {% if data.role != 'admin' %}
-                    <tr>
-                        <td>{{ data }}</td>
-                        <td>{{ data.role }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </tbody>
-    </table> -->
+  <!-- Content -->
+  <div class="content container ">
+    <h3>Teachers</h3>
     <table class="table table-striped table-bordered">
-        <thead class="table-dark">
+      <thead class="table-dark">
+        <tr>
+          <th>Username</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in datas %}
+          {% if data.role == 'teacher' %}
             <tr>
-                <th>Username</th>
-                <th>Role</th>
+              <td>{{ data }}</td>
+              <td>{{ data.role }}</td>
             </tr>
-        </thead>
-        <tbody>
-            {% for data in datas %}
-            {% if data.role != 'admin' %}
-            {% if data.role == 'teacher' %}
-            <tr>
-                <td>{{ data }}</td>
-                <td>{{ data.role }}</td>
-            </tr>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-        </tbody>
-    </table>
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Username</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for data in datas %}
-            {% if data.role != 'admin' %}
-            {% if data.role == 'student' %}
-            <tr>
-                <td>{{ data }}</td>
-                <td>{{ data.role }}</td>
-            </tr>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-        </tbody>
+          {% endif %}
+        {% endfor %}
+      </tbody>
     </table>
 
+    <h3>Students</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Username</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in datas %}
+          {% if data.role == 'student' %}
+            <tr>
+              <td>{{ data }}</td>
+              <td>{{ data.role }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-
-<div class="w-50 mx-auto">
-    <a href="{% url 'create' %}" class="btn btn-success"> Add User</a>
-    <a href="{% url 'delete'  %}" class="btn btn-success"> Delete User</a>
-    <a href="{% url 'update_users' %}" class="btn btn-success"> Update User</a>
-    <a href="{% url 'add_class' %}" class="btn btn-success"> Add class</a>
-    <a href="{% url 'viewschedule' %}" class="btn btn-success">viewschedule</a>
-</div>
-    
-
 {% endblock %}

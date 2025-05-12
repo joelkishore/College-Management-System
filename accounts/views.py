@@ -10,6 +10,17 @@ from schedule.form import scheduleform
 # Create your views here.
 
 def home(request):
+    user=request.user
+    if user.is_authenticated:
+        role=user.role
+        if role=='admin':
+            return redirect('dash')
+        elif role=='teacher':
+            return redirect('staff')
+        elif role=='student':
+            return redirect('student')
+        else:
+            return render(request,'home.html')   
     return render(request,'home.html')
 
 def log_in(request):
@@ -37,7 +48,6 @@ def out(request):
 
 def ad(request):
     User = get_user_model()
-
     users = User.objects.all()
     return render(request,'admin/admin.html',{'datas':users})
 
