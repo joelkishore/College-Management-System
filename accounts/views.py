@@ -65,33 +65,21 @@ def create(request):
 
     return render(request,'admin/create_user.html',{'form':form,'users':users})
 
-# def delete(request):
-
-#     User = get_user_model()
-#     users = User.objects.all()
-
-#     return render(request,'admin/delete_user.html',{'users':users})
-
 def delete_user(request, user_id=None):
-    # Get the user to delete
     if request.method=='POST':
         User = get_user_model()
         user = User.objects.get(id=user_id)
-        
-        # Ensure that the logged-in user is allowed to delete (admin only)
+
         if request.user.is_superuser:
             user.delete()
-            return redirect('dash')  # Redirect to the user list after deletion
+            return redirect('dash')  
         else:
             raise Http404("You do not have permission to delete this user.")
     User = get_user_model()
     users = User.objects.all()
     return render(request,'admin/delete_user.html',{'users':users})
 
-# def update(request):
-#     User = get_user_model()
-#     users = User.objects.all()
-#     return render(request,'admin/update_user.html',{'users':users})
+
 
 def update_user(request, user_id=None):
     User = get_user_model()
@@ -103,7 +91,8 @@ def update_user(request, user_id=None):
             form = userupdateForm(request.POST, instance=user)
             if form.is_valid():
                 form.save()
-                return redirect('update_users')  # Go back to list
+                user.delect()
+                return redirect('update_users')   
         else:
             form = userupdateForm(instance=user)
 
@@ -118,7 +107,7 @@ def class_create(request):
         form = ClassForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dash')  # Redirect to the class list view
+            return redirect('dash') 
     else:
         form = ClassForm()
     data=Class.objects.all()

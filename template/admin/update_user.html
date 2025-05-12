@@ -9,7 +9,6 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-success">Save</button>
-            <a href="{% url 'update_users' %}" class="btn btn-secondary">Cancel</a>
         </form>
 
     {% else %}
@@ -33,7 +32,7 @@
                             <td>{{ user.role }}</td>
                             <td>
                                 {% if user.profile %}
-                                    <img src="{{ user.profile.url }}" alt="Profile" style="width: 50px; height: 50px;">
+                                    <img src="{{ user.profile }}" alt="Profile" style="width: 50px; height: 50px;">
                                 {% else %}
                                     No Profile
                                 {% endif %}
@@ -50,6 +49,5 @@
         {% endif %}
     {% endif %}
 
-    <a href="{% url 'dash' %}" class="btn btn-secondary mt-3">Back to Dashboard</a>
 </div>
 {% endblock %}
